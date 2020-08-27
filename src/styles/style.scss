@@ -1,5 +1,5 @@
-// @import 'style.scss';
 @import 'bootstrap';
+
 $secondary-2: #afafaf;
 
 //Overwrite Bootstrap
@@ -31,9 +31,6 @@ ul {
   padding: 0;
 }
 
-.projects-list {
-}
-
 .projects-item {
   font-weight: 500;
 }
@@ -59,7 +56,7 @@ ul {
 
 .content {
   flex: 1;
-  background-image: url('./images/bg-img.jpg');
+  background-image: url('../images/bg-img.jpg');
   background-repeat: repeat;
   background-size: 500px 500px;
   display: flex;
@@ -80,11 +77,20 @@ ul {
   flex: 1;
   display: flex;
   flex-direction: column;
-
 }
 
 .task-items-cont {
   flex: 1;
+}
+
+.done {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.dones svg {
+  color: blue;
+  margin: 0 5px 0 -15px;
 }
 
 .task-submit {
