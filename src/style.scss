@@ -1,6 +1,32 @@
 // @import 'style.scss';
 @import 'bootstrap';
 
-body {
-  background: red;
+main {
+  display: flex;
+}
+
+aside {
+  background-color: white;
+  width: 280px;
+  height: 100vh;
+}
+
+.btn {
+  border-radius: 1.25rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.projects-list {
+}
+
+.projects-item {
+  font-weight: 500;
+}
+
+.projects-item:hover {
+  background-color: $light;
 }
