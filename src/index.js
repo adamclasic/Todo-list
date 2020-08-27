@@ -11,20 +11,22 @@ function taskItemCreator(index, name, completed) {
   liElemt.className = 'task-item my-2';
   if (!completed) {
     liElemt.innerHTML = `
-    <input class="form-check-input ml-1" onclick='taskFactt.completeTask(1)' type="checkbox" value="" id="task${index}">
+    <input class="form-check-input ml-1" type="checkbox" data="${index}" value="" id="task${index}">
     <label class="form-check-label ml-4" for="task${index}">
-      ${name}
+    ${name}
     </label>
     `
   }else {
     liElemt.innerHTML = `
-    <input class="form-check-input ml-1" checked type="checkbox" value="" id="task${index}">
+    <input class="form-check-input ml-1" checked type="checkbox" data="${index}" value="" id="task${index}">
     <label class="form-check-label done ml-4" for="task${index}">
-      ${name}
+    ${name}
     </label>
     <i class="far fa-trash-alt float-right trash"></i>
     `
   }
+  // liElemt.children[0].style.display = 'none';
+  liElemt.children[0].addEventListener("click", function(){ taskFactt.completeTask(this.getAttribute('data')) });
   return liElemt;
 }
 function renderTask(arr) {
@@ -83,3 +85,8 @@ taskFactt.completeTask(2);
 // taskFactt.render;
 // taskItemCreator(0, 'name', false);
 console.log(taskFactt.tasksArr);
+
+// document.querySelector('.form-check-input').ch
+
+document.querySelector(".form-check-input").style.backgroundColor = 'red';
+// document.querySelectorAll(".form-check-input").addEventListener("click", function(){ alert("Hello World!"); });
