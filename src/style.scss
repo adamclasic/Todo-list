@@ -44,3 +44,12 @@ ul {
 .bg-grey {
   background-color: $secondary-2;
 }
+
+// content
+
+.content {
+  flex: 1;
+  background-image: url('./images/bg-img.jpg');
+  background-repeat: repeat;
+  background-size: 500px 500px;
+}
