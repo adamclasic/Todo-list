@@ -13,4 +13,8 @@ const addTask = () => {
       }
       tasksArr.push(newTask);
 }
+
+let removeTask = function removeTask(name) {
+    tasksArr = tasksArr.filter(function (el) { return el.name != name; });
+  }
 // export default

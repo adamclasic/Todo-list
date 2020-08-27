@@ -6,12 +6,12 @@ import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 
-function taskItemCreator(index, name, complited) {
+function taskItemCreator(index, name, completed) {
   let liElemt = document.createElement('li');
   liElemt.className = 'task-item my-2';
-  if (!complited) {
+  if (!completed) {
     liElemt.innerHTML = `
-    <input class="form-check-input ml-1" type="checkbox" value="" id="task${index}">
+    <input class="form-check-input ml-1" onclick='taskFactt.completeTask(1)' type="checkbox" value="" id="task${index}">
     <label class="form-check-label ml-4" for="task${index}">
       ${name}
     </label>
@@ -33,7 +33,7 @@ function renderTask(arr) {
   let counter = 0;
   arr.forEach(element => {
     counter++;
-    let listItemToDom = taskItemCreator(counter, element.name, element.complited)
+    let listItemToDom = taskItemCreator(counter, element.name, element.completed)
     tasksParent.appendChild(listItemToDom);
   });
   
@@ -42,16 +42,16 @@ function renderTask(arr) {
 function taskFact() {
   let tasksArr = [{
     name: 'fix the sink',
-    complited: false
+    completed: false
   },
   {
     name: 'pay rent',
-    complited: true
+    completed: true
   }];
   const addTask = (name) => {
     let newTask = {
       name: name,
-      complited: false
+      completed: false
     };
     tasksArr.push(newTask);
     renderTask(tasksArr);
@@ -65,15 +65,21 @@ function taskFact() {
     renderTask(this.tasksArr);
   }
 
-  return {tasksArr, addTask, removeTask, render}
+  let completeTask = function completeTask(index) {
+    this.tasksArr[index].completed = true;
+    renderTask(this.tasksArr);
+  }
+
+  return {tasksArr, addTask, removeTask, render, completeTask}
 };
 
 let taskFactt = taskFact();
-
+ 
 // taskFactt.removeTask('pay rent');
 taskFactt.addTask('buy new phone');
 taskFactt.addTask('buy new car');
 taskFactt.removeTask('pay rent');
+taskFactt.completeTask(2);
 // taskFactt.render;
 // taskItemCreator(0, 'name', false);
 console.log(taskFactt.tasksArr);
