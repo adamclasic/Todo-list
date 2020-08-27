@@ -1,5 +1,6 @@
 // @import 'style.scss';
 @import 'bootstrap';
+$secondary-2: #afafaf;
 
 main {
   display: flex;
@@ -27,6 +28,19 @@ ul {
   font-weight: 500;
 }
 
+.projects-item span {
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  color: white;
+  font-size: 15px;
+  line-height: 24px;
+}
+
 .projects-item:hover {
   background-color: $light;
+}
+
+.bg-grey {
+  background-color: $secondary-2;
 }
