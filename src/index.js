@@ -6,6 +6,14 @@ import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 
+document.querySelector("#addTaskId").addEventListener("submit", function(e){
+  e.preventDefault();
+  // alert(this.children[0].value);
+  taskFactt.addTask(this.children[0].value);
+  this.children[0].value = '';
+
+});
+
 function taskItemCreator(index, name, completed) {
   let liElemt = document.createElement('li');
   liElemt.className = 'task-item my-2 d-flex justify-content-between';
@@ -31,7 +39,7 @@ function taskItemCreator(index, name, completed) {
   liElemt.children[0].addEventListener("click", function(){ taskFactt.toggleComplete(parseInt(this.getAttribute('data'))-1) });
   return liElemt;
 }
-function renderTask(arr) {
+function renderTask(arr, taskName) {
   let tasksParent = document.querySelector('.task-items-cont');
   tasksParent.innerHTML = '';
   let counter = 0;
@@ -40,10 +48,13 @@ function renderTask(arr) {
     let listItemToDom = taskItemCreator(counter, element.name, element.completed)
     tasksParent.appendChild(listItemToDom);
   });
-  console.log(arr);
+  document.querySelector('h5.mb-4').innerText = taskName + ' ' + arr.length
+
+  return arr.length;
 }
 
-function taskFact() {
+function taskFact(projectName) {
+  let taskName = projectName;
   let tasksArr = [{
     name: 'fix the sink',
     completed: false
@@ -51,34 +62,43 @@ function taskFact() {
   {
     name: 'pay rent',
     completed: true
+  },
+  {
+    name: 'build a website',
+    completed: true
   }];
   const addTask = (name) => {
+    if (name.length<1) {return}
     let newTask = {
       name: name,
       completed: false
     };
     tasksArr.push(newTask);
-    renderTask(tasksArr);
+    renderTask(tasksArr, taskName);
     return tasksArr;
   }
 
-  const render = renderTask(tasksArr);
+  const render = renderTask(tasksArr, taskName);
 
   let removeTask = function removeTask(index) {
     this.tasksArr.splice(index, 1);
     // this.tasksArr = tasksArr.filter(function (el) { return el.name != name; });
-    renderTask(this.tasksArr);
+    renderTask(this.tasksArr, taskName);
   }
 
   let toggleComplete = function completeTask(index) {
     this.tasksArr[index].completed = !this.tasksArr[index].completed;
-    renderTask(this.tasksArr);
+    renderTask(this.tasksArr, taskName);
   }
 
-  return {tasksArr, addTask, removeTask, render, toggleComplete};
+  // let numOfItems = returnLength(tasksArr);
+
+  return {taskName, tasksArr, addTask, removeTask, render, toggleComplete};
 };
 
-let taskFactt = taskFact();
+
+
+let taskFactt = taskFact('work');
  
 // taskFactt.removeTask('pay rent');
 taskFactt.addTask('buy new phone');
@@ -87,9 +107,8 @@ taskFactt.addTask('buy new car');
 // taskFactt.completeTask(2);
 // taskFactt.render;
 // taskItemCreator(0, 'name', false);
-console.log(taskFactt.tasksArr);
-
+console.log(taskFactt.tasksArr.length);
 // document.querySelector('.form-check-input').ch
-
+document.querySelector('h5.mb-4').innerText = taskFactt.taskName + ' ' + taskFactt.tasksArr.length ;
 document.querySelector(".form-check-input").style.backgroundColor = 'red';
 // document.querySelectorAll(".form-check-input").addEventListener("click", function(){ alert("Hello World!"); });
