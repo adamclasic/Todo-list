@@ -24,8 +24,8 @@ function taskItemCreator(index, name, completed) {
     </label>
     <button class='btn btn-link trash p-0 d-inline'><i class="far fa-trash-alt "></i></button>
     `
-  // liElemt.children[2].addEventListener("click", function(){ alert('this.innerHTML') });
-  liElemt.children[2].addEventListener("click", function(){ taskFactt.removeTask(parseInt(this.getAttribute('data'))-1) });
+  // liElemt.children[2].addEventListener("click", function(){ alert(parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data'))-1) });
+  liElemt.children[2].addEventListener("click", function(){ taskFactt.removeTask(parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data'))-1) });
   }
   // liElemt.children[0].style.display = 'none';
   liElemt.children[0].addEventListener("click", function(){ taskFactt.toggleComplete(parseInt(this.getAttribute('data'))-1) });
@@ -40,7 +40,7 @@ function renderTask(arr) {
     let listItemToDom = taskItemCreator(counter, element.name, element.completed)
     tasksParent.appendChild(listItemToDom);
   });
-  
+  console.log(arr);
 }
 
 function taskFact() {
@@ -64,8 +64,9 @@ function taskFact() {
 
   const render = renderTask(tasksArr);
 
-  let removeTask = function removeTask(name) {
-    this.tasksArr = tasksArr.filter(function (el) { return el.name != name; });
+  let removeTask = function removeTask(index) {
+    this.tasksArr.splice(index, 1);
+    // this.tasksArr = tasksArr.filter(function (el) { return el.name != name; });
     renderTask(this.tasksArr);
   }
 
