@@ -8,7 +8,7 @@ import '@fortawesome/fontawesome-free/js/brands';
 
 function taskItemCreator(index, name, completed) {
   let liElemt = document.createElement('li');
-  liElemt.className = 'task-item my-2';
+  liElemt.className = 'task-item my-2 d-flex justify-content-between';
   if (!completed) {
     liElemt.innerHTML = `
     <input class="form-check-input ml-1" type="checkbox" data="${index}" value="" id="task${index}">
@@ -22,11 +22,13 @@ function taskItemCreator(index, name, completed) {
     <label class="form-check-label done ml-4" for="task${index}">
     ${name}
     </label>
-    <i class="far fa-trash-alt float-right trash"></i>
+    <button class='btn btn-link trash p-0 d-inline'><i class="far fa-trash-alt "></i></button>
     `
+  // liElemt.children[2].addEventListener("click", function(){ alert('this.innerHTML') });
+  liElemt.children[2].addEventListener("click", function(){ taskFactt.removeTask(parseInt(this.getAttribute('data'))-1) });
   }
   // liElemt.children[0].style.display = 'none';
-  liElemt.children[0].addEventListener("click", function(){ taskFactt.completeTask(this.getAttribute('data')) });
+  liElemt.children[0].addEventListener("click", function(){ taskFactt.toggleComplete(parseInt(this.getAttribute('data'))-1) });
   return liElemt;
 }
 function renderTask(arr) {
@@ -67,12 +69,12 @@ function taskFact() {
     renderTask(this.tasksArr);
   }
 
-  let completeTask = function completeTask(index) {
-    this.tasksArr[index].completed = true;
+  let toggleComplete = function completeTask(index) {
+    this.tasksArr[index].completed = !this.tasksArr[index].completed;
     renderTask(this.tasksArr);
   }
 
-  return {tasksArr, addTask, removeTask, render, completeTask}
+  return {tasksArr, addTask, removeTask, render, toggleComplete};
 };
 
 let taskFactt = taskFact();
@@ -80,8 +82,8 @@ let taskFactt = taskFact();
 // taskFactt.removeTask('pay rent');
 taskFactt.addTask('buy new phone');
 taskFactt.addTask('buy new car');
-taskFactt.removeTask('pay rent');
-taskFactt.completeTask(2);
+// taskFactt.removeTask('pay rent');
+// taskFactt.completeTask(2);
 // taskFactt.render;
 // taskItemCreator(0, 'name', false);
 console.log(taskFactt.tasksArr);

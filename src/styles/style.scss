@@ -81,6 +81,10 @@ ul {
 
 .task-items-cont {
   flex: 1;
+
+  svg {
+    cursor: pointer;
+  }
 }
 
 .done {
@@ -95,4 +99,8 @@ ul {
 
 .task-submit {
   border-radius: 1.25rem;
+}
+
+.trash {
+  line-height: 1rem !important;
 }
