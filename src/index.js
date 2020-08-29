@@ -152,8 +152,12 @@ function addProject(name) {
   projectsArr.push(project)
 }
 
+function removeProject(index) {
+  projectsArr.splice(index, 1);
+}
 
 addProject('home');
+removeProject(2);
 
 renderProjects(projectsArr);
 
