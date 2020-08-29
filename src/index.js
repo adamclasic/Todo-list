@@ -112,7 +112,7 @@ taskFactt.addTask('buy new car');
 console.log(taskFactt.tasksArr.length);
 // document.querySelector('.form-check-input').ch
 document.querySelector('h5.mb-4').innerText = taskFactt.taskName + ' ' + taskFactt.tasksArr.length ;
-document.querySelector(".form-check-input").style.backgroundColor = 'red';
+// document.querySelector(".form-check-input").style.backgroundColor = 'red';
 // document.querySelectorAll(".form-check-input").addEventListener("click", function(){ alert("Hello World!"); });
 
 
@@ -121,9 +121,6 @@ document.querySelector(".form-check-input").style.backgroundColor = 'red';
 // project area
 
 
-
-let projectsArr = [taskFact('work'), taskFact('programing')];
-console.log(projectsArr);
 
 function createProjectElement(project, index) {
   let projectLi = document.createElement('li');
@@ -147,17 +144,35 @@ function renderProjects(arr) {
   });
 }
 
-function addProject(name) {
-  let project = taskFact(name);
-  projectsArr.push(project)
+function projectFact() {
+  let projectsArr = [taskFact('work'), taskFact('programing')];
+  console.log(projectsArr);
+
+  function addProject(name) {
+    let project = taskFact(name);
+    projectsArr.push(project)
+    renderProjects(projectsArr);
+  }
+
+  function removeProject(index) {
+    projectsArr.splice(index, 1);
+    renderProjects(projectsArr);
+  }
+  return { removeProject, addProject, projectsArr }
 }
 
-function removeProject(index) {
-  projectsArr.splice(index, 1);
-}
+document.querySelector("#addProjectId").addEventListener("submit", function(e){
+  e.preventDefault();
+  // alert(this.children[0].value);
+  mainProjects.addProject(this.children[0].value);
+  this.children[0].value = '';
+  // document.querySelector('#IDModal').modal('hide');
+});
 
-addProject('home');
-removeProject(2);
+let mainProjects = projectFact();
+mainProjects.addProject('home');
+mainProjects.addProject('sport');
+// mainProjects.removeProject(1);
 
-renderProjects(projectsArr);
+// renderProjects(projectsArr);
 
