@@ -5,14 +5,72 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo List</title>
-  <!-- <link rel="stylesheet" href="./styles/style.css"> -->
+  <link rel="stylesheet" href="./css/bootstrap-image-checkbox.min.css">
 </head>
 
 <body>
   <main>
     <aside class="border-right">
       <div class="upper-section  p-4">
-        <button type="button" class="btn btn-primary w-100"><i class="fas fa-plus"></i> Create a project</button>
+        <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target=".bd-example-modal-md"><i class="fas fa-plus"></i> Create a project</button>
+        <div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-md">
+            <div class="modal-content">
+              <div class="upper-modal p-4">
+                <h4>Create a Project</h4>
+                <form action="">
+                  <div class="label-container">
+                    <h6>Add labels to your project:</h6>
+                    <input type="checkbox" name="tech" id="label1">
+                    <label for="label1">Tech</label>
+                    <input type="checkbox" name="personal" id="label2">
+                    <label for="label2">Personal</label>
+                    <input type="checkbox" name="family" id="label3">
+                    <label for="label3">Life</label>
+                  </div>
+                  
+                  <h6>Select a backgournd image:</h6>
+                  <div class="background-image-input-cont d-flex flex-wrap">
+                    <div class="custom-control custom-radio image-checkbox m-2">
+                      <input type="radio" checked class="custom-control-input" id="ck1a" name="ck2">
+                      <label class="custom-control-label" for="ck1a">
+                        <img src="https://source.unsplash.com/160x116/?people" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+                    
+                    <div class="custom-control custom-radio image-checkbox m-2">
+                      <input type="radio" class="custom-control-input" id="ck2a" name="ck2">
+                      <label class="custom-control-label" for="ck2a">
+                        <img src="https://source.unsplash.com/160x116/?tech" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+                    
+                    <div class="custom-control custom-radio image-checkbox m-2">
+                      <input type="radio" class="custom-control-input" id="ck3a" name="ck2">
+                      <label class="custom-control-label" for="ck3a">
+                        <img src="https://source.unsplash.com/160x116/?nature" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+
+                    <div class="custom-control custom-radio image-checkbox m-2">
+                      <input type="radio" class="custom-control-input" id="ck4a" name="ck2">
+                      <label class="custom-control-label" for="ck4a">
+                        <img src="https://source.unsplash.com/160x116/?fitness" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+
+                  </div>
+                </form>
+              </div>
+              <div class="bottom-modal">
+                <form action="" id="addProjectId" class="d-flex p-2 shadow-up">
+                  <input type="text" placeholder="Click to quickly add a project" maxlength="1000" class="form-control task-submit" id="FormControlInput1" >
+                  <button type="submit" class="btn btn-outline-primary ml-2 "> <i class="fas fa-arrow-up"></i> </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="aside-header-cont px-4 py-1 bg-light text-primary">
         <h5>Projects</h5>

@@ -1,6 +1,8 @@
 // import Project from './scripts/project';
 // import run from './scripts/app.js';
+import 'bootstrap';
 import './styles/style.scss';
+import 'bootstrap/js/dist/dropdown';
 import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
@@ -121,27 +123,29 @@ document.querySelector(".form-check-input").style.backgroundColor = 'red';
 
 
 let projects = [taskFact('work'), taskFact('programing')];
-console.log(projects)
+console.log(projects);
 
 function createProjectElement(project, index) {
-let projectLi = document.createElement('li');
-projectLi.className = 'projects-item px-4 py-2';
-// projectLi.createAttribute('date').value = index;
-projectLi.innerHTML = `${project.taskName} <span class="d-inline-block rounded-circle  bg-grey">${project.tasksArr.length}</span>`;
+  let projectLi = document.createElement('li');
+  projectLi.className = 'projects-item px-4 py-2';
+  //give attribute for indexing
+  var a = document.createAttribute("data");
+  a.value = index;
+  projectLi.setAttributeNode(a);
+
+  projectLi.innerHTML = `${project.taskName} <span class="d-inline-block rounded-circle  bg-grey">${project.tasksArr.length}</span>`;
   return projectLi;
 }
 
 function renderProjects(arr) {
-    let projectsList = document.querySelector('.projects-list').innerHTML = '';
-    let count = 0;
+  let projectsList = document.querySelector('.projects-list').innerHTML = '';
+  let count = 0;
   arr.forEach(elem => {
     let projectLi = createProjectElement(elem, count);
     projectsList = document.querySelector('.projects-list').appendChild(projectLi);
     count++;
   });
-  
-
 }
 
-renderProjects(projects)
+renderProjects(projects);
 
