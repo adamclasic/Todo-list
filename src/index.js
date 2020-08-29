@@ -129,7 +129,10 @@ function createProjectElement(project, index) {
   var a = document.createAttribute("data");
   a.value = index;
   projectLi.setAttributeNode(a);
-  projectLi.innerHTML = `<div>${project.taskName} <span class="d-inline-block rounded-circle  bg-grey">${project.tasksArr.length}</span></div><button class='btn btn-link trash p-0' ><i  class="far fa-trash-alt float-right trash"></i>`;
+  projectLi.innerHTML = `<div>${project.taskName} <span class="d-inline-block rounded-circle  bg-grey">${project.tasksArr.length}</span></div><button class='btn btn-link trash p-0' ><i id='trashProject' class=" d-none far fa-trash-alt float-right trash"></i>`;
+  projectLi.addEventListener('mouseenter', function() { this.lastElementChild.lastElementChild.classList.add("d-inline") });
+  projectLi.addEventListener('mouseleave', function() { this.lastElementChild.lastElementChild.classList.remove("d-inline") });
+  // projectLi.addEventListener('mouseover', function() { alert(this.lastElementChild.lastElementChild)})
   projectLi.lastElementChild.addEventListener('click', function() { mainProjects.removeProject(this.parentElement.getAttribute('data')) })
   // liElemt.children[2].addEventListener("click", function(){ alert(parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data'))-1) });
   // liElemt.children[2].addEventListener("click", function(){ taskFactt.removeTask(parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data'))-1) });
@@ -151,6 +154,7 @@ function projectFact() {
   console.log(projectsArr);
 
   function addProject(name) {
+    if (name.length<1) {return}
     let project = taskFact(name);
     projectsArr.push(project)
     renderProjects(projectsArr);
