@@ -12,7 +12,6 @@ let projectId = 0;
 
 document.querySelector("#addTaskId").addEventListener("submit", function(e){
   e.preventDefault();
-  // alert(this.children[0].value);
   mainProjects.projectsArr[projectId].addTask(this.children[0].value);
   this.children[0].value = '';
 
@@ -36,10 +35,8 @@ function taskItemCreator(index, name, completed) {
     </label>
     <button class='btn btn-link trash p-0 d-inline'><i class="far fa-trash-alt "></i></button>
     `
-  // liElemt.children[2].addEventListener("click", function(){ alert(parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data'))-1) });
   liElemt.children[2].addEventListener("click", function(){ mainProjects.projectsArr[projectId].removeTask(parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data'))-1) });
   }
-  // liElemt.children[0].style.display = 'none';
   liElemt.children[0].addEventListener("click", function(){ mainProjects.projectsArr[projectId].toggleComplete(parseInt(this.getAttribute('data'))-1) });
   return liElemt;
 }
@@ -52,25 +49,13 @@ function renderTask(arr, taskName) {
     let listItemToDom = taskItemCreator(counter, element.name, element.completed)
     tasksParent.appendChild(listItemToDom);
   });
-  document.querySelector('h5.mb-4').innerText = taskName + ' ' + arr.length
+  document.querySelector('h5.mb-4').innerText = taskName.charAt(0).toUpperCase() + taskName.slice(1)
 
   return arr.length;
 }
 
 function taskFact(projectName) {
   let taskName = projectName;
-  // let tasksArr = [{
-  //   name: 'fix the sink',
-  //   completed: false
-  // },
-  // {
-  //   name: 'pay rent',
-  //   completed: true
-  // },
-  // {
-  //   name: 'build a website',
-  //   completed: true
-  // }];
   let tasksArr = [];
   const addTask = (name) => {
     if (name.length<1) {return}
@@ -84,16 +69,13 @@ function taskFact(projectName) {
     return tasksArr;
   }
 
-  // const render = renderTask(tasksArr, taskName);
   const render = function render() {
     renderTask(this.tasksArr, taskName);
     console.log(tasksArr);
-    // alert(tasksArr);
   }
 
   let removeTask = function removeTask(index) {
     this.tasksArr.splice(index, 1);
-    // this.tasksArr = tasksArr.filter(function (el) { return el.name != name; });
     renderTask(this.tasksArr, taskName);
     renderProjects(mainProjects.projectsArr);
   }
@@ -103,30 +85,8 @@ function taskFact(projectName) {
     renderProjects(mainProjects.projectsArr);
     renderTask(this.tasksArr, taskName);
   }
-
-  let renderProject = function runderProject() {
-    
-  }
-
   return {taskName, tasksArr, addTask, removeTask, render, toggleComplete};
 };
-
-
-
-let taskFactt = taskFact('work');
- 
-// taskFactt.removeTask('pay rent');
-// taskFactt.addTask('buy new phone');
-// taskFactt.addTask('buy new car');
-// taskFactt.removeTask('pay rent');
-// taskFactt.completeTask(2);
-// taskFactt.render;
-// taskItemCreator(0, 'name', false);
-// console.log(taskFactt.tasksArr.length);
-// document.querySelector('.form-check-input').ch
-// document.querySelector('h5.mb-4').innerText = taskFactt.taskName + ' ' + taskFactt.tasksArr.length ;
-// document.querySelector(".form-check-input").style.backgroundColor = 'red';
-// document.querySelectorAll(".form-check-input").addEventListener("click", function(){ alert("Hello World!"); });
 
 
 
@@ -142,7 +102,7 @@ function createProjectElement(project, index) {
   var a = document.createAttribute("data");
   a.value = index;
   projectLi.setAttributeNode(a);
-  projectLi.innerHTML = `<div>${project.taskName} <span class="d-inline-block rounded-circle  bg-grey">${project.tasksArr.length}</span></div><button class='btn btn-link trash p-0' ><i id='trashProject' class=" d-none far fa-trash-alt float-right trash"></i>`;
+  projectLi.innerHTML = `<div>${project.taskName.charAt(0).toUpperCase() + project.taskName.slice(1)} <span class="d-inline-block rounded-circle  bg-grey">${project.tasksArr.length}</span></div><button class='btn btn-link trash p-0' ><i id='trashProject' class=" d-none far fa-trash-alt float-right trash"></i>`;
   projectLi.addEventListener('mouseenter', function() { this.lastElementChild.lastElementChild.classList.add("d-inline") });
   projectLi.addEventListener('mouseleave', function() { this.lastElementChild.lastElementChild.classList.remove("d-inline") });
 
@@ -150,12 +110,7 @@ function createProjectElement(project, index) {
     mainProjects.projectsArr[this.getAttribute('data')].render();
     projectId = this.getAttribute('data');
   });
-  // projectLi.addEventListener('click', function() { alert(mainProjects.projectsArr[this.getAttribute('data')].taskName) });
-
-  // projectLi.addEventListener('mouseover', function() { alert(this.lastElementChild.lastElementChild)})
   projectLi.lastElementChild.addEventListener('click', function() { mainProjects.removeProject(this.parentElement.getAttribute('data')) })
-  // liElemt.children[2].addEventListener("click", function(){ alert(parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data'))-1) });
-  // liElemt.children[2].addEventListener("click", function(){ taskFactt.removeTask(parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data'))-1) });
   return projectLi;
 }
 
