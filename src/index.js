@@ -57,18 +57,19 @@ function renderTask(arr, taskName) {
 
 function taskFact(projectName) {
   let taskName = projectName;
-  let tasksArr = [{
-    name: 'fix the sink',
-    completed: false
-  },
-  {
-    name: 'pay rent',
-    completed: true
-  },
-  {
-    name: 'build a website',
-    completed: true
-  }];
+  // let tasksArr = [{
+  //   name: 'fix the sink',
+  //   completed: false
+  // },
+  // {
+  //   name: 'pay rent',
+  //   completed: true
+  // },
+  // {
+  //   name: 'build a website',
+  //   completed: true
+  // }];
+  let tasksArr = [];
   const addTask = (name) => {
     if (name.length<1) {return}
     let newTask = {
@@ -80,7 +81,12 @@ function taskFact(projectName) {
     return tasksArr;
   }
 
-  const render = renderTask(tasksArr, taskName);
+  // const render = renderTask(tasksArr, taskName);
+  const render = function render() {
+    renderTask(this.tasksArr, taskName);
+    console.log(tasksArr);
+    // alert(tasksArr);
+  }
 
   let removeTask = function removeTask(index) {
     this.tasksArr.splice(index, 1);
@@ -93,7 +99,9 @@ function taskFact(projectName) {
     renderTask(this.tasksArr, taskName);
   }
 
-  // let numOfItems = returnLength(tasksArr);
+  let renderProject = function runderProject() {
+    
+  }
 
   return {taskName, tasksArr, addTask, removeTask, render, toggleComplete};
 };
@@ -103,15 +111,15 @@ function taskFact(projectName) {
 let taskFactt = taskFact('work');
  
 // taskFactt.removeTask('pay rent');
-taskFactt.addTask('buy new phone');
-taskFactt.addTask('buy new car');
+// taskFactt.addTask('buy new phone');
+// taskFactt.addTask('buy new car');
 // taskFactt.removeTask('pay rent');
 // taskFactt.completeTask(2);
 // taskFactt.render;
 // taskItemCreator(0, 'name', false);
-console.log(taskFactt.tasksArr.length);
+// console.log(taskFactt.tasksArr.length);
 // document.querySelector('.form-check-input').ch
-document.querySelector('h5.mb-4').innerText = taskFactt.taskName + ' ' + taskFactt.tasksArr.length ;
+// document.querySelector('h5.mb-4').innerText = taskFactt.taskName + ' ' + taskFactt.tasksArr.length ;
 // document.querySelector(".form-check-input").style.backgroundColor = 'red';
 // document.querySelectorAll(".form-check-input").addEventListener("click", function(){ alert("Hello World!"); });
 
@@ -132,6 +140,10 @@ function createProjectElement(project, index) {
   projectLi.innerHTML = `<div>${project.taskName} <span class="d-inline-block rounded-circle  bg-grey">${project.tasksArr.length}</span></div><button class='btn btn-link trash p-0' ><i id='trashProject' class=" d-none far fa-trash-alt float-right trash"></i>`;
   projectLi.addEventListener('mouseenter', function() { this.lastElementChild.lastElementChild.classList.add("d-inline") });
   projectLi.addEventListener('mouseleave', function() { this.lastElementChild.lastElementChild.classList.remove("d-inline") });
+
+  projectLi.addEventListener('click', function() { mainProjects.projectsArr[this.getAttribute('data')].render() });
+  // projectLi.addEventListener('click', function() { alert(mainProjects.projectsArr[this.getAttribute('data')].taskName) });
+
   // projectLi.addEventListener('mouseover', function() { alert(this.lastElementChild.lastElementChild)})
   projectLi.lastElementChild.addEventListener('click', function() { mainProjects.removeProject(this.parentElement.getAttribute('data')) })
   // liElemt.children[2].addEventListener("click", function(){ alert(parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data'))-1) });
@@ -175,7 +187,9 @@ document.querySelector("#addProjectId").addEventListener("submit", function(e){
 
 let mainProjects = projectFact();
 mainProjects.addProject('home');
-mainProjects.addProject('sport');
+mainProjects.projectsArr[0].addTask('get the shit done');
+// mainProjects.addProject('sport');
+mainProjects.projectsArr[1].render;
 // mainProjects.removeProject(1);
 
 // renderProjects(projectsArr);
