@@ -122,8 +122,8 @@ document.querySelector(".form-check-input").style.backgroundColor = 'red';
 
 
 
-let projects = [taskFact('work'), taskFact('programing')];
-console.log(projects);
+let projectsArr = [taskFact('work'), taskFact('programing')];
+console.log(projectsArr);
 
 function createProjectElement(project, index) {
   let projectLi = document.createElement('li');
@@ -147,5 +147,13 @@ function renderProjects(arr) {
   });
 }
 
-renderProjects(projects);
+function addProject(name) {
+  let project = taskFact(name);
+  projectsArr.push(project)
+}
+
+
+addProject('home');
+
+renderProjects(projectsArr);
 
