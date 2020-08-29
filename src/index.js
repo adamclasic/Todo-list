@@ -8,10 +8,12 @@ import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 
+let projectId = 0;
+
 document.querySelector("#addTaskId").addEventListener("submit", function(e){
   e.preventDefault();
   // alert(this.children[0].value);
-  taskFactt.addTask(this.children[0].value);
+  mainProjects.projectsArr[projectId].addTask(this.children[0].value);
   this.children[0].value = '';
 
 });
@@ -35,10 +37,10 @@ function taskItemCreator(index, name, completed) {
     <button class='btn btn-link trash p-0 d-inline'><i class="far fa-trash-alt "></i></button>
     `
   // liElemt.children[2].addEventListener("click", function(){ alert(parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data'))-1) });
-  liElemt.children[2].addEventListener("click", function(){ taskFactt.removeTask(parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data'))-1) });
+  liElemt.children[2].addEventListener("click", function(){ mainProjects.projectsArr[projectId].removeTask(parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data'))-1) });
   }
   // liElemt.children[0].style.display = 'none';
-  liElemt.children[0].addEventListener("click", function(){ taskFactt.toggleComplete(parseInt(this.getAttribute('data'))-1) });
+  liElemt.children[0].addEventListener("click", function(){ mainProjects.projectsArr[projectId].toggleComplete(parseInt(this.getAttribute('data'))-1) });
   return liElemt;
 }
 function renderTask(arr, taskName) {
@@ -78,6 +80,7 @@ function taskFact(projectName) {
     };
     tasksArr.push(newTask);
     renderTask(tasksArr, taskName);
+    renderProjects(mainProjects.projectsArr);
     return tasksArr;
   }
 
@@ -92,10 +95,12 @@ function taskFact(projectName) {
     this.tasksArr.splice(index, 1);
     // this.tasksArr = tasksArr.filter(function (el) { return el.name != name; });
     renderTask(this.tasksArr, taskName);
+    renderProjects(mainProjects.projectsArr);
   }
 
   let toggleComplete = function completeTask(index) {
     this.tasksArr[index].completed = !this.tasksArr[index].completed;
+    renderProjects(mainProjects.projectsArr);
     renderTask(this.tasksArr, taskName);
   }
 
@@ -141,7 +146,10 @@ function createProjectElement(project, index) {
   projectLi.addEventListener('mouseenter', function() { this.lastElementChild.lastElementChild.classList.add("d-inline") });
   projectLi.addEventListener('mouseleave', function() { this.lastElementChild.lastElementChild.classList.remove("d-inline") });
 
-  projectLi.addEventListener('click', function() { mainProjects.projectsArr[this.getAttribute('data')].render() });
+  projectLi.addEventListener('click', function() { 
+    mainProjects.projectsArr[this.getAttribute('data')].render();
+    projectId = this.getAttribute('data');
+  });
   // projectLi.addEventListener('click', function() { alert(mainProjects.projectsArr[this.getAttribute('data')].taskName) });
 
   // projectLi.addEventListener('mouseover', function() { alert(this.lastElementChild.lastElementChild)})
