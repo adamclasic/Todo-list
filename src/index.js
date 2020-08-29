@@ -124,13 +124,15 @@ document.querySelector('h5.mb-4').innerText = taskFactt.taskName + ' ' + taskFac
 
 function createProjectElement(project, index) {
   let projectLi = document.createElement('li');
-  projectLi.className = 'projects-item px-4 py-2';
+  projectLi.className = 'projects-item  d-flex justify-content-between px-4 py-2';
   //give attribute for indexing
   var a = document.createAttribute("data");
   a.value = index;
   projectLi.setAttributeNode(a);
-
-  projectLi.innerHTML = `${project.taskName} <span class="d-inline-block rounded-circle  bg-grey">${project.tasksArr.length}</span>`;
+  projectLi.innerHTML = `<div>${project.taskName} <span class="d-inline-block rounded-circle  bg-grey">${project.tasksArr.length}</span></div><button class='btn btn-link trash p-0' ><i  class="far fa-trash-alt float-right trash"></i>`;
+  projectLi.lastElementChild.addEventListener('click', function() { mainProjects.removeProject(this.parentElement.getAttribute('data')) })
+  // liElemt.children[2].addEventListener("click", function(){ alert(parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data'))-1) });
+  // liElemt.children[2].addEventListener("click", function(){ taskFactt.removeTask(parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data'))-1) });
   return projectLi;
 }
 
@@ -163,10 +165,8 @@ function projectFact() {
 
 document.querySelector("#addProjectId").addEventListener("submit", function(e){
   e.preventDefault();
-  // alert(this.children[0].value);
   mainProjects.addProject(this.children[0].value);
   this.children[0].value = '';
-  // document.querySelector('#IDModal').modal('hide');
 });
 
 let mainProjects = projectFact();
