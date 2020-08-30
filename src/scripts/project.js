@@ -1,26 +1,26 @@
-export default function Poject() {
-  let tasksArr = [{
-    name: 'fix the sink',
-    complited: false
-  },
-  {
-    name: 'pay rent',
-    complited: true
-  }];
+import {renderProjects, renderTask, projectId} from './render'
+import {default as taskFact} from './tasks'
 
-  let addTask = function addTask(name) {
-    let newTask = {
-      name: name,
-      complited: false
-    }
-    tasksArr.push(newTask);
+export default function projectFact() {
+  let projectsArr = [taskFact('work'), taskFact('programing')];
+  console.log(projectsArr);
+
+  function addProject(name) {
+    if (name.length<1) {return}
+    let project = taskFact(name);
+    projectsArr.push(project)
+    renderProjects(projectsArr);
   }
 
-  let tasksNum = tasksArr.length;
-
-  let removeTask = function removeTask(name) {
-    tasksArr = tasksArr.filter(function (el) { return el.name != name; });
+  function removeProject(index) {
+    projectsArr.splice(index, 1);
+    renderProjects(projectsArr);
   }
 
-  return { tasksArr, addTask, tasksNum, removeTask }
+  function renderPage(testArr) {
+    console.log(testArr[projectId].taskName);
+    renderProjects(testArr);
+    renderTask(testArr[projectId].tasksArr, testArr[projectId].taskName);
+  }
+  return { removeProject, addProject, projectsArr , renderPage}
 }

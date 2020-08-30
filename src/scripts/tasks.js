@@ -1,20 +1,35 @@
-let tasksArr = [{
-    name: 'fix the sink',
-    complited: false
-  },
-  {
-    name: 'pay rent',
-    complited: true
-  }];
-const addTask = () => {
-    let newTask = {
-        name: name,
-        complited: false
-      }
-      tasksArr.push(newTask);
-}
+import {renderProjects, renderTask, mainProjects} from './render'
 
-let removeTask = function removeTask(name) {
-    tasksArr = tasksArr.filter(function (el) { return el.name != name; });
+export default function taskFact(projectName) {
+  let taskName = projectName;
+  let tasksArr = [];
+  const addTask = (name) => {
+    if (name.length<1) {return}
+    let newTask = {
+      name: name,
+      completed: false
+    };
+    tasksArr.push(newTask);
+    renderTask(tasksArr, taskName);
+    renderProjects(mainProjects.projectsArr);
+    return tasksArr;
   }
-// export default
+
+  const render = function render() {
+    renderTask(this.tasksArr, taskName);
+    console.log(tasksArr);
+  }
+
+  let removeTask = function removeTask(index) {
+    this.tasksArr.splice(index, 1);
+    renderTask(this.tasksArr, taskName);
+    renderProjects(mainProjects.projectsArr);
+  }
+
+  let toggleComplete = function completeTask(index) {
+    this.tasksArr[index].completed = !this.tasksArr[index].completed;
+    renderProjects(mainProjects.projectsArr);
+    renderTask(this.tasksArr, taskName);
+  }
+  return {taskName, tasksArr, addTask, removeTask, render, toggleComplete};
+};
