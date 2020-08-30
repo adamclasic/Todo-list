@@ -10,11 +10,20 @@ export default function projectFact() {
     let project = taskFact(name);
     projectsArr.push(project)
     renderProjects(projectsArr);
+    // if (projectId) {console.log('true')}else {console.log('false')}
+
+    renderTask(this.projectsArr[projectId].tasksArr, this.projectsArr[projectId].taskName);
+    
   }
 
   function removeProject(index) {
     projectsArr.splice(index, 1);
+    projectId--;
+    if (projectId) {console.log('the selectedProjectId is:' + projectId)}else {console.log('false')}
+    console.log(projectsArr);
+    console.log(projectsArr);
     renderProjects(projectsArr);
+    if (projectsArr>0){renderTask(projectsArr[0].tasksArr, projectsArr[0].taskName)};
   }
 
   function renderPage(testArr) {

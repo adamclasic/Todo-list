@@ -17,7 +17,7 @@ export default function taskFact(projectName) {
 
   const render = function render() {
     renderTask(this.tasksArr, taskName);
-    console.log(tasksArr);
+    // console.log(tasksArr);
   }
 
   let removeTask = function removeTask(index) {

@@ -51,17 +51,28 @@ function createProjectElement(project, index) {
   projectLi.addEventListener('mouseenter', function() { this.lastElementChild.lastElementChild.classList.add("d-inline") });
   projectLi.addEventListener('mouseleave', function() { this.lastElementChild.lastElementChild.classList.remove("d-inline") });
 
-  projectLi.addEventListener('click', function() { 
+  projectLi.addEventListener('click', function() {
+    console.log(mainProjects.projectsArr);
     mainProjects.projectsArr[this.getAttribute('data')].render();
     projectId = this.getAttribute('data');
     console.log(projectId);
   });
-  projectLi.lastElementChild.addEventListener('click', function() { mainProjects.removeProject(this.parentElement.getAttribute('data')) })
+  projectLi.lastElementChild.addEventListener('click', function() { 
+    mainProjects.removeProject(this.parentElement.getAttribute('data')) 
+    // mainProjects.projectsArr[0].render();
+    renderTask(mainProjects.projectsArr[0].tasksArr, mainProjects.projectsArr[0].taskName)
+    projectId = 0;
+  })
   return projectLi;
 }
 
 function renderProjects(arr) {
   let projectsList = document.querySelector('.projects-list').innerHTML = '';
+  if (arr.length == 0) {
+    document.querySelector('.card-container').classList.add('d-none')
+  } else {
+    document.querySelector('.card-container').classList.remove('d-none')
+  }
   let count = 0;
   arr.forEach(elem => {
     let projectLi = createProjectElement(elem, count);
