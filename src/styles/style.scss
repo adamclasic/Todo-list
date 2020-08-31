@@ -128,3 +128,22 @@ ul {
 .trash {
   line-height: 1rem !important;
 }
+
+@media (max-width: 576px) {
+  aside {
+    font-size: 80%;
+    width: 85px;
+
+    & h5 {
+      font-size: 90%;
+    }
+
+    & .projects-item {
+      text-align: center;
+    }
+  }
+
+  .card-container {
+    width: 80%;
+  }
+}

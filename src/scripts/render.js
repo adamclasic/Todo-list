@@ -49,7 +49,7 @@ function renderTask(arr, taskName) {
 
 function createProjectElement(project, index) {
   let projectLi = document.createElement('li');
-  projectLi.className = 'projects-item  d-flex justify-content-between px-4 py-2';
+  projectLi.className = 'projects-item  d-sm-flex justify-content-between px-1 px-sm-4  py-2';
   //give attribute for indexing
   var a = document.createAttribute("data");
   a.value = index;
