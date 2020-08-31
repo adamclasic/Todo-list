@@ -36,9 +36,9 @@ console.log('----saved-restored json---------');
 console.log(restoredProjectArrWithFunction);
 console.log('-------------------------------');
   let mainProjectsWithFunctions = projectFact(restoredProjectArrWithFunction );
-  // console.log('----mainProjectsWithFunctions---------');
-  // console.log(mainProjectsWithFunctions);
-  // console.log('------------------------------------------');
+  console.log('----mainProjectsWithFunctions---------');
+  console.log(mainProjectsWithFunctions);
+  console.log('------------------------------------------');
   mainProjects = mainProjectsWithFunctions;
 }
 // localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));

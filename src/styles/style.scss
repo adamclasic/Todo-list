@@ -87,6 +87,21 @@ ul {
   }
 }
 
+.task-items-cont li:last-of-type {
+  position: relative;
+  left: 400px;
+  opacity: 0;
+  animation: pop 0.2s ease-in-out forwards;
+  // background-color: green;
+}
+
+@keyframes pop {
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+
 .done {
   text-decoration: line-through;
   color: gray;
