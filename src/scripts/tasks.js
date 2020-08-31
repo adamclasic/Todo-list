@@ -1,8 +1,10 @@
 import {renderProjects, renderTask, mainProjects} from './render'
 
-export default function taskFact(projectName) {
+export default function taskFact(projectName, restoredArr = null) {
   let taskName = projectName;
   let tasksArr = [];
+  if (restoredArr) {tasksArr = restoredArr};
+  
   const addTask = (name) => {
     if (name.length<1) {return}
     let newTask = {

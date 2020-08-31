@@ -1,16 +1,17 @@
 import {renderProjects, renderTask, projectId} from './render'
 import {default as taskFact} from './tasks'
 
-export default function projectFact() {
-  let projectsArr = [taskFact('work'), taskFact('programing')];
-  console.log(projectsArr);
+export default function projectFact(arr = null) {
 
+  let projectsArr = [taskFact('simple')];
+  if (arr) {projectsArr = arr}
   function addProject(name) {
     if (name.length<1) {return}
     let project = taskFact(name);
     projectsArr.push(project)
     renderProjects(projectsArr);
     // if (projectId) {console.log('true')}else {console.log('false')}
+    localStorage.setItem('project', JSON.stringify(projectsArr));
 
     renderTask(this.projectsArr[projectId].tasksArr, this.projectsArr[projectId].taskName);
     
@@ -24,6 +25,8 @@ export default function projectFact() {
     console.log(projectsArr);
     renderProjects(projectsArr);
     if (projectsArr>0){renderTask(projectsArr[0].tasksArr, projectsArr[0].taskName)};
+    localStorage.setItem('project', JSON.stringify(projectsArr));
+
   }
 
   function renderPage(testArr) {
