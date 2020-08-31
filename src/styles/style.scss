@@ -87,15 +87,18 @@ ul {
   }
 }
 
-.task-items-cont li:last-of-type {
+.animate {
   position: relative;
-  left: 400px;
-  opacity: 0;
   animation: pop 0.2s ease-in-out forwards;
   // background-color: green;
 }
 
 @keyframes pop {
+  from {
+    left: 400px;
+    opacity: 0;
+  }
+
   to {
     left: 0;
     opacity: 1;

@@ -12,8 +12,8 @@ export default function taskFact(projectName, restoredArr = null) {
       completed: false
     };
     tasksArr.push(newTask);
-    renderTask(tasksArr, taskName);
-    renderProjects(mainProjects.projectsArr);
+    // renderTask(tasksArr, taskName);
+    // renderProjects(mainProjects.projectsArr);
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
 
     return tasksArr;

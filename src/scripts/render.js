@@ -82,12 +82,13 @@ function renderProjects(arr) {
 }
 
 function addEventListenerToTasksForm() {
-  
-document.querySelector("#addTaskId").addEventListener("submit", function(e){
-  e.preventDefault();
-  mainProjects.projectsArr[projectId].addTask(this.children[0].value);
-  this.children[0].value = '';
-});
+  document.querySelector("#addTaskId").addEventListener("submit", function(e){
+    e.preventDefault();
+    mainProjects.projectsArr[projectId].addTask(this.children[0].value);
+    this.children[0].value = '';
+    renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr[projectId].taskName);
+    document.querySelector('.task-items-cont').lastChild.classList.add('animate');
+  });
 }
 
 function addEventListenerToProjectsForm() {
@@ -95,6 +96,7 @@ document.querySelector("#addProjectId").addEventListener("submit", function(e){
   e.preventDefault();
   mainProjects.addProject(this.children[0].value);
   this.children[0].value = '';
+
 });
 }
 
