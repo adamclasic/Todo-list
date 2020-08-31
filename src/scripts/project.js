@@ -30,9 +30,9 @@ export default function projectFact(arr = null) {
   }
 
   function renderPage(testArr) {
-    console.log(testArr[projectId].taskName);
+    // console.log(testArr[projectId].taskName);
     renderProjects(testArr);
-    renderTask(testArr[projectId].tasksArr, testArr[projectId].taskName);
+    if (testArr[projectId]) {renderTask(testArr[projectId].tasksArr, testArr[projectId].taskName)};
   }
   return { removeProject, addProject, projectsArr , renderPage}
 }

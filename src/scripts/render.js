@@ -53,14 +53,14 @@ function createProjectElement(project, index) {
 
   projectLi.addEventListener('click', function() {
     console.log(mainProjects.projectsArr);
-    mainProjects.projectsArr[this.getAttribute('data')].render();
+    if (mainProjects.projectsArr[this.getAttribute('data')]) {mainProjects.projectsArr[this.getAttribute('data')].render()};
     projectId = this.getAttribute('data');
     console.log(projectId);
   });
   projectLi.lastElementChild.addEventListener('click', function() { 
     mainProjects.removeProject(this.parentElement.getAttribute('data')) 
     // mainProjects.projectsArr[0].render();
-    renderTask(mainProjects.projectsArr[0].tasksArr, mainProjects.projectsArr[0].taskName)
+    if (mainProjects.projectsArr[0]) {renderTask(mainProjects.projectsArr[0].tasksArr, mainProjects.projectsArr[0].taskName)};
     projectId = 0;
   })
   return projectLi;
