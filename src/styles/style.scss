@@ -87,9 +87,15 @@ ul {
   }
 }
 
-.animate {
+.animate-in {
   position: relative;
   animation: pop 0.2s ease-in-out forwards;
+  // background-color: green;
+}
+
+.animate-out {
+  position: relative;
+  animation: pop 0.2s ease-in-out reverse;
   // background-color: green;
 }
 

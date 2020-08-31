@@ -26,8 +26,8 @@ export default function taskFact(projectName, restoredArr = null) {
 
   let removeTask = function removeTask(index) {
     this.tasksArr.splice(index, 1);
-    renderTask(this.tasksArr, taskName);
-    renderProjects(mainProjects.projectsArr);
+    // renderTask(this.tasksArr, taskName);
+    // renderProjects(mainProjects.projectsArr);
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
 
   }
