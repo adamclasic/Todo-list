@@ -21,9 +21,12 @@ function taskItemCreator(index, name, completed) {
     <button class='btn btn-link trash p-0 d-inline'><i class="far fa-trash-alt "></i></button>
     `;
     liElemt.children[2].addEventListener('click', function () {
-      mainProjects.projectsArr[projectId].removeTask(parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data')) - 1);
+      mainProjects.projectsArr[projectId].removeTask(parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data')) - 1, 10);
       this.parentElement.classList.add('animate-out');
-      setTimeout(() => { renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr[projectId].taskName); }, 200);
+      setTimeout(() => {
+        renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr[projectId].taskName);
+        renderProjects(mainProjects.projectsArr);
+      }, 200);
     });
   }
   liElemt.children[0].addEventListener('click', function () { mainProjects.projectsArr[projectId].toggleComplete(parseInt(this.getAttribute('data')) - 1); });
@@ -95,6 +98,8 @@ function addEventListenerToTasksForm() {
       mainProjects.projectsArr[projectId].tasksArr,
       mainProjects.projectsArr[projectId].taskName,
     );
+    renderProjects(mainProjects.projectsArr);
+
     document.querySelector('.task-items-cont').lastChild.classList.add('animate-in');
   });
 }
