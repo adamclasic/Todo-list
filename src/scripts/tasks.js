@@ -14,6 +14,8 @@ export default function taskFact(projectName, restoredArr = null) {
     tasksArr.push(newTask);
     renderTask(tasksArr, taskName);
     renderProjects(mainProjects.projectsArr);
+    localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
+
     return tasksArr;
   }
 
@@ -26,12 +28,16 @@ export default function taskFact(projectName, restoredArr = null) {
     this.tasksArr.splice(index, 1);
     renderTask(this.tasksArr, taskName);
     renderProjects(mainProjects.projectsArr);
+    localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
+
   }
 
   let toggleComplete = function completeTask(index) {
     this.tasksArr[index].completed = !this.tasksArr[index].completed;
     renderProjects(mainProjects.projectsArr);
     renderTask(this.tasksArr, taskName);
+    localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
+
   }
   return {taskName, tasksArr, addTask, removeTask, render, toggleComplete};
 };
