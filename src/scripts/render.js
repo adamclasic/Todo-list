@@ -17,14 +17,16 @@ function createProjectElement(project, index) {
 
   projectLi.addEventListener('click', function renderProjectArea() {
     projectId = this.getAttribute('data');
-    mainProjects.renderPage(mainProjects.projectsArr);
+    renderProjects(mainProjects.projectsArr);
+    renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr);
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
 
   });
   projectLi.lastElementChild.addEventListener('click', function runderAfterRemove() {
     mainProjects.removeProject(this.parentElement.getAttribute('data'));
     if (mainProjects.projectsArr[0]) {
-      mainProjects.renderPage(mainProjects.projectsArr);
+      renderProjects(mainProjects.projectsArr);
+      renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr);
     }
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
 
@@ -72,11 +74,9 @@ function taskItemCreator(index, name, completed) {
         parseInt(this.previousElementSibling.previousElementSibling.getAttribute('data'), 10) - 1,
       );
       this.parentElement.classList.add('animate-out');
+      renderProjects(mainProjects.projectsArr);
       setTimeout(() => {
-        mainProjects.renderPage(
-          mainProjects.projectsArr,
-        );
-        renderProjects(mainProjects.projectsArr);
+        renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr);
       }, 200);
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
 
@@ -84,7 +84,8 @@ function taskItemCreator(index, name, completed) {
   }
   liElemt.children[0].addEventListener('click', function toggleCompleteOnATask() {
     mainProjects.projectsArr[projectId].toggleComplete(parseInt(this.getAttribute('data'), 10) - 1);
-    mainProjects.renderPage(mainProjects.projectsArr);
+    renderProjects(mainProjects.projectsArr);
+    renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr);
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
   });
   return liElemt;
@@ -99,7 +100,7 @@ function renderTask(arr, taskName) {
     const listItemToDom = taskItemCreator(counter, element.name, element.completed);
     tasksParent.appendChild(listItemToDom);
   });
-  document.querySelector('#projectName').innerText = taskName.charAt(0).toUpperCase() + taskName.slice(1);
+  document.querySelector('#projectName').innerText = mainProjects.projectsArr[projectId].taskName.charAt(0).toUpperCase() + mainProjects.projectsArr[projectId].taskName.slice(1);
   return arr.length;
 }
 
