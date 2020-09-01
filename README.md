@@ -58,9 +58,12 @@ This is a simple game where two players can play against each other and try to o
 
 ### Built With
 
-* [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+* [Vanila JS](https://en.wikipedia.org/wiki/JavaScript)
 * [HTML](https://en.wikipedia.org/wiki/HTML)
 * [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+* [Sass](https://en.wikipedia.org/wiki/Sass_(stylesheet_language))
+* [Webpack](https://en.wikipedia.org/wiki/Webpack)
+* [Bootstrap Sass](https://en.wikipedia.org/wiki/Bootstrap)
 
 
 
@@ -72,6 +75,8 @@ To get a local copy up and running follow these simple steps.
 ### Prerequisites
 - Code Editor
 - Browser
+- Node
+- Npm
 
 ### Installation
  
