@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle, import/no-named-default */
 import { default as taskFact } from './tasks';
 
 export default function projectFact(arr = null) {
