@@ -12,22 +12,15 @@ export default function taskFact(projectName, restoredArr = null) {
       completed: false,
     };
     tasksArr.push(newTask);
-    // renderTask(tasksArr, taskName);
-    // renderProjects(mainProjects.projectsArr);
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
-
-    return tasksArr;
   };
 
   const render = function render() {
     renderTask(this.tasksArr, taskName);
-    // console.log(tasksArr);
   };
 
   const removeTask = function removeTask(index) {
     this.tasksArr.splice(index, 1);
-    // renderTask(this.tasksArr, taskName);
-    // renderProjects(mainProjects.projectsArr);
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
   };
 
