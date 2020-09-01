@@ -29,6 +29,7 @@ if (localStorage.getItem('project')) {
   const mainProjectsWithFunctions = projectFact(restoredProjectArrWithFunction);
   mainProjects = mainProjectsWithFunctions;
 }
+// this is for inisialzing the dom without clicking
 
-mainProjects.renderPage(mainProjects.projectsArr);
+// mainProjects.renderPage(mainProjects.projectsArr);
 export { mainProjects };
