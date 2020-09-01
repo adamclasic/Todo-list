@@ -1,5 +1,3 @@
-/* eslint-disable import/no-cycle, import/no-named-default */
-// import { mainProjects } from '../index';
 
 export default function taskFact(projectName, restoredArr = null) {
   const taskName = projectName;
