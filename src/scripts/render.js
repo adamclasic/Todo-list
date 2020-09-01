@@ -18,7 +18,7 @@ function createProjectElement(project, index) {
   projectLi.addEventListener('click', function renderProjectArea() {
     projectId = this.getAttribute('data');
     renderProjects(mainProjects.projectsArr);
-    renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr);
+    renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr[projectId].taskName);
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
 
   });
@@ -26,7 +26,7 @@ function createProjectElement(project, index) {
     mainProjects.removeProject(this.parentElement.getAttribute('data'));
     if (mainProjects.projectsArr[0]) {
       renderProjects(mainProjects.projectsArr);
-      renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr);
+      renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr[projectId].taskName);
     }
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
 
@@ -76,7 +76,7 @@ function taskItemCreator(index, name, completed) {
       this.parentElement.classList.add('animate-out');
       renderProjects(mainProjects.projectsArr);
       setTimeout(() => {
-        renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr);
+        renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr[projectId].taskName);
       }, 200);
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
 
@@ -85,7 +85,7 @@ function taskItemCreator(index, name, completed) {
   liElemt.children[0].addEventListener('click', function toggleCompleteOnATask() {
     mainProjects.projectsArr[projectId].toggleComplete(parseInt(this.getAttribute('data'), 10) - 1);
     renderProjects(mainProjects.projectsArr);
-    renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr);
+    renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr[projectId].taskName);
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
   });
   return liElemt;
@@ -100,7 +100,7 @@ function renderTask(arr, taskName) {
     const listItemToDom = taskItemCreator(counter, element.name, element.completed);
     tasksParent.appendChild(listItemToDom);
   });
-  document.querySelector('#projectName').innerText = mainProjects.projectsArr[projectId].taskName.charAt(0).toUpperCase() + mainProjects.projectsArr[projectId].taskName.slice(1);
+  document.querySelector('#projectName').innerText = taskName.charAt(0).toUpperCase() + taskName.slice(1);
   return arr.length;
 }
 
