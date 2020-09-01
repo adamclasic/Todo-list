@@ -8,9 +8,23 @@ export default function taskFact(projectName, restoredArr = null) {
     if (name.length < 1) { return; }
     const newTask = {
       name,
+      description: null,
+      priority: 'low',
+      date: null,
       completed: false,
     };
     tasksArr.push(newTask);
+  };
+
+  const editTask = (index, name, description, date, priority) => {
+    const editedTask = {
+      name,
+      description: description || null,
+      priority: priority || null,
+      date: date || null,
+      completed: false,
+    };
+    taskName[index] = editedTask;
   };
 
   const removeTask = function removeTask(index) {
@@ -21,6 +35,6 @@ export default function taskFact(projectName, restoredArr = null) {
     this.tasksArr[index].completed = !this.tasksArr[index].completed;
   };
   return {
-    taskName, tasksArr, addTask, removeTask, toggleComplete,
+    taskName, tasksArr, addTask, removeTask, toggleComplete, editTask,
   };
 }
