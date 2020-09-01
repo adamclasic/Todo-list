@@ -171,6 +171,29 @@ function addEventListenerToProjectsForm() {
   });
 }
 
+// testing 123
+
+let editTaskForm = document.querySelector('#task-form');
+let titleInput = editTaskForm.querySelector('#list-title');
+let descriptionInput = editTaskForm.querySelector('#list-description');
+let dateInput = editTaskForm.querySelector('#list-date');
+function fillEditTaskForm(title, description, date) {
+  titleInput.value = title;
+  descriptionInput.value = description;
+  dateInput.value = date;
+}
+
+function scrapEditTaskForm(index) {
+  mainProjects.projectsArr[projectId].editTask(
+  index,
+  titleInput.value,
+  descriptionInput.value,
+  dateInput.value,
+  )
+}
+
+// testing 123
+
 renderTask(
   mainProjects.projectsArr[projectId].tasksArr,
   mainProjects.projectsArr[projectId].taskName,
