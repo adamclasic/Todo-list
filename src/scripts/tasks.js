@@ -1,4 +1,4 @@
-import { renderProjects, renderTask, mainProjects } from './render';
+import { mainProjects } from '../index';
 
 export default function taskFact(projectName, restoredArr = null) {
   const taskName = projectName;
@@ -15,9 +15,9 @@ export default function taskFact(projectName, restoredArr = null) {
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
   };
 
-  const render = function render() {
-    renderTask(this.tasksArr, taskName);
-  };
+  // const render = function render() {
+  //   renderTask(this.tasksArr, taskName);
+  // };
 
   const removeTask = function removeTask(index) {
     this.tasksArr.splice(index, 1);
@@ -26,11 +26,11 @@ export default function taskFact(projectName, restoredArr = null) {
 
   const toggleComplete = function completeTask(index) {
     this.tasksArr[index].completed = !this.tasksArr[index].completed;
-    renderProjects(mainProjects.projectsArr);
-    renderTask(this.tasksArr, taskName);
+    // renderProjects(mainProjects.projectsArr);
+    // renderTask(this.tasksArr, taskName);
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
   };
   return {
-    taskName, tasksArr, addTask, removeTask, render, toggleComplete,
+    taskName, tasksArr, addTask, removeTask, toggleComplete,
   };
 }

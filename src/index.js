@@ -1,4 +1,3 @@
-// import run from './scripts/app.js';
 import { addEventListenerToTasksForm, addEventListenerToProjectsForm } from './scripts/render';
 import { default as projectFact } from './scripts/project';
 import { default as taskFact } from './scripts/tasks';

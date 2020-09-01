@@ -13,8 +13,8 @@ function createProjectElement(project, index) {
   projectLi.addEventListener('mouseleave', function hideTrash() { this.lastElementChild.lastElementChild.classList.remove('d-inline'); });
 
   projectLi.addEventListener('click', function renderProjectArea() {
-    if (mainProjects.projectsArr[this.getAttribute('data')]) { mainProjects.projectsArr[this.getAttribute('data')].render(); }
     projectId = this.getAttribute('data');
+    mainProjects.renderPage(mainProjects.projectsArr);
   });
   projectLi.lastElementChild.addEventListener('click', function runderAfterRemove() {
     mainProjects.removeProject(this.parentElement.getAttribute('data'));
@@ -73,7 +73,10 @@ function taskItemCreator(index, name, completed) {
       }, 200);
     });
   }
-  liElemt.children[0].addEventListener('click', function toggleCompleteOnATask() { mainProjects.projectsArr[projectId].toggleComplete(parseInt(this.getAttribute('data'), 10) - 1); });
+  liElemt.children[0].addEventListener('click', function toggleCompleteOnATask() {
+    mainProjects.projectsArr[projectId].toggleComplete(parseInt(this.getAttribute('data'), 10) - 1);
+    mainProjects.renderPage(mainProjects.projectsArr);
+  });
   return liElemt;
 }
 
@@ -115,5 +118,5 @@ function addEventListenerToProjectsForm() {
 
 export {
   renderProjects, renderTask, addEventListenerToTasksForm,
-  addEventListenerToProjectsForm, projectId, mainProjects,
+  addEventListenerToProjectsForm, projectId,
 };
