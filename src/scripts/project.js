@@ -18,7 +18,6 @@ export default function projectFact(arr = null) {
     projectId -= 1;
     renderProjects(projectsArr);
     if (projectsArr > 0) { renderTask(projectsArr[0].tasksArr, projectsArr[0].taskName); }
-    localStorage.setItem('project', JSON.stringify(projectsArr));
   }
 
   function renderPage(testArr) {

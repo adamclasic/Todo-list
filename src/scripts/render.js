@@ -18,12 +18,16 @@ function createProjectElement(project, index) {
   projectLi.addEventListener('click', function renderProjectArea() {
     projectId = this.getAttribute('data');
     mainProjects.renderPage(mainProjects.projectsArr);
+    localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
+
   });
   projectLi.lastElementChild.addEventListener('click', function runderAfterRemove() {
     mainProjects.removeProject(this.parentElement.getAttribute('data'));
     if (mainProjects.projectsArr[0]) {
       mainProjects.renderPage(mainProjects.projectsArr);
     }
+    localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
+
     projectId = 0;
   });
   return projectLi;
@@ -74,11 +78,14 @@ function taskItemCreator(index, name, completed) {
         );
         renderProjects(mainProjects.projectsArr);
       }, 200);
+    localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
+
     });
   }
   liElemt.children[0].addEventListener('click', function toggleCompleteOnATask() {
     mainProjects.projectsArr[projectId].toggleComplete(parseInt(this.getAttribute('data'), 10) - 1);
     mainProjects.renderPage(mainProjects.projectsArr);
+    localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
   });
   return liElemt;
 }
@@ -106,6 +113,7 @@ function addEventListenerToTasksForm() {
       mainProjects.projectsArr[projectId].taskName,
     );
     renderProjects(mainProjects.projectsArr);
+    localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
 
     document.querySelector('.task-items-cont').lastChild.classList.add('animate-in');
   });
@@ -116,6 +124,8 @@ function addEventListenerToProjectsForm() {
     e.preventDefault();
     mainProjects.addProject(this.children[0].value);
     this.children[0].value = '';
+    localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
+
   });
 }
 
