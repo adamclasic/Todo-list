@@ -11,6 +11,38 @@
 
 <body>
   <main>
+    <div class="modal fade" id="editTask" tabindex="-1" role="dialog" aria-labelledby="editTaskLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editTaskLabel">Edit Task</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="task-form">
+              <input type="text" class="form-control task-submit " id="list-tilte" name="title" placeholder="title">
+              <input type="text" class="form-control task-submit" id="list-description" name="description" placeholder="description">
+              <input type="date" class="form-control task-submit" id="list-date" name="date" placeholder="due date">
+              <div class="priority-radio-button">
+                PRIORITY :-
+                <input type="radio" id="high" name="priority" class="radio-button text-danger" value="high">
+                <label for="high" class=" text-danger">High</label>
+                <input type="radio" id="medium" name="priority" class="radio-button text-warning" value="medium">
+                <label for="medium" class="radio-button text-warning">Medium</label>
+                <input type="radio" id="low" name="priority" class="radio-button " value="low">
+                <label for="low">Low</label>
+              </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <aside class="border-right">
       <div class="upper-section  p-4">
         <button type="button" class="btn btn-primary create-project-btn w-100" data-toggle="modal" data-target=".bd-example-modal-md"><i class="fas fa-plus"></i> <span class="d-none d-sm-inline"> Create a project</button>

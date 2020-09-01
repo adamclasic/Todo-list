@@ -38,7 +38,7 @@ function taskItemCreator(index, name, completed) {
     <input class="form-check-input ml-1" type="checkbox" data="${index}" value="" id="task${index}">
     <label class="form-check-label ml-4" for="task${index}">
     ${name}
-    <button class='btn expand-btn btn-link p-0 d-inline'><i class="fas fa-pen"></i></button>
+    <button data-toggle="modal" data-target="#editTask" class='btn expand-btn btn-link p-0 d-inline'><i class="fas fa-pen"></i></button>
     </label>
     `;
   } else {
@@ -46,7 +46,7 @@ function taskItemCreator(index, name, completed) {
     <input class="form-check-input ml-1" checked type="checkbox" data="${index}" value="" id="task${index}">
     <label class="form-check-label done ml-4" for="task${index}">
     ${name}
-    <button class='btn expand-btn btn-link p-0 d-inline'><i class="fas fa-pen"></i></button>
+    <button data-toggle="modal" data-target="#editTask" class='btn expand-btn btn-link p-0 d-inline'><i class="fas fa-pen"></i></button>
     </label>
     <button class='btn btn-link trash p-0 d-inline'><i class="far fa-trash-alt "></i></button>
     `;
@@ -74,9 +74,9 @@ function taskItemCreator(index, name, completed) {
     );
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
   });
-  liElemt.querySelector('.expand-btn').addEventListener('click', function expandBtn() {
-    console.log('hi');
-  });
+  // liElemt.querySelector('.expand-btn').addEventListener('click', function expandBtn() {
+  //   console.log('hi');
+  // });
   return liElemt;
 }
 
