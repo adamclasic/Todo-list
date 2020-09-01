@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle, import/no-named-default */
 import { mainProjects } from '../index';
 
 export default function taskFact(projectName, restoredArr = null) {
@@ -15,10 +16,6 @@ export default function taskFact(projectName, restoredArr = null) {
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
   };
 
-  // const render = function render() {
-  //   renderTask(this.tasksArr, taskName);
-  // };
-
   const removeTask = function removeTask(index) {
     this.tasksArr.splice(index, 1);
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
@@ -26,8 +23,6 @@ export default function taskFact(projectName, restoredArr = null) {
 
   const toggleComplete = function completeTask(index) {
     this.tasksArr[index].completed = !this.tasksArr[index].completed;
-    // renderProjects(mainProjects.projectsArr);
-    // renderTask(this.tasksArr, taskName);
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
   };
   return {

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle, import/no-named-default */
 import { renderProjects, renderTask, projectId } from './render';
 import { default as taskFact } from './tasks';
 

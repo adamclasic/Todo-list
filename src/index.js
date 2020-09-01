@@ -1,3 +1,5 @@
+/* eslint-disable import/no-cycle, import/no-extraneous-dependencies,
+ import/no-named-default,import/prefer-default-export, import/no-mutable-exports */
 import { addEventListenerToTasksForm, addEventListenerToProjectsForm } from './scripts/render';
 import { default as projectFact } from './scripts/project';
 import { default as taskFact } from './scripts/tasks';
