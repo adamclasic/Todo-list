@@ -9,8 +9,6 @@ import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 
-
-// project area
 let mainProjects = projectFact();
 
 if (localStorage.getItem('project')) {
@@ -27,11 +25,7 @@ if (localStorage.getItem('project')) {
 
 let projectId = 0;
 
-
 function addEventListenerToEditTaskForm() {
-  // dom Data
-
-
   const editBtn = document.querySelector('#taskSaveBtn');
   const editTaskLabel = document.querySelector('#editTaskLabel');
   editBtn.addEventListener('click', () => {
@@ -60,7 +54,6 @@ function addEventListenerToEditTaskForm() {
     );
   });
 }
-
 
 function taskItemCreator(index, name, completed) {
   const liElemt = document.createElement('li');
@@ -121,17 +114,12 @@ function taskItemCreator(index, name, completed) {
     const indexOfTask = parseInt(this.parentElement.previousElementSibling.getAttribute('data') - 1, 10);
     const { name } = mainProjects.projectsArr[projectId].tasksArr[indexOfTask];
     const { description } = mainProjects.projectsArr[projectId].tasksArr[indexOfTask];
-    // let priority = mainProjects.projectsArr[projectId].tasksArr[indexOfTask].priority;
     const { date } = mainProjects.projectsArr[projectId].tasksArr[indexOfTask];
-
     fillEditTaskForm(indexOfTask, name, description, 'low', date);
-    // console.log(indexOfTask);
   });
   return liElemt;
 }
 addEventListenerToEditTaskForm();
-
-// testing 321
 
 function renderTask(arr, taskName) {
   console.log(arr);
@@ -224,32 +212,17 @@ function addEventListenerToProjectsForm() {
   });
 }
 
-// testing 123
-
-
 function fillEditTaskForm(indexOfTask, title, description, priority, date) {
-  const editBtn = document.querySelector('#taskSaveBtn');
-  const taskIdSpan = editTaskLabel.querySelector('span').innerText = indexOfTask;
+  const taskIdSpan = editTaskLabel.querySelector('span');
   const editTaskForm = document.querySelector('#task-form');
-
   const titleInput = editTaskForm.querySelector('#list-title');
   const descriptionInput = editTaskForm.querySelector('#list-description');
   const dateInput = editTaskForm.querySelector('#list-date');
+  taskIdSpan.innerText = indexOfTask;
   titleInput.value = title;
   descriptionInput.value = description;
   dateInput.value = date;
 }
-
-// function scrapEditTaskForm(index) {
-//   mainProjects.projectsArr[projectId].editTask(
-//   index,
-//   titleInput.value,
-//   descriptionInput.value,
-//   dateInput.value,
-//   )
-// }
-
-// testing 123
 
 renderTask(
   mainProjects.projectsArr[projectId].tasksArr,
