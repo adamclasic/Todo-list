@@ -122,7 +122,6 @@ function taskItemCreator(index, name, completed) {
 addEventListenerToEditTaskForm();
 
 function renderTask(arr, taskName) {
-  console.log(arr);
   const tasksParent = document.querySelector('.task-items-cont');
   tasksParent.innerHTML = '';
   let indexCounter = 0;
@@ -213,8 +212,8 @@ function addEventListenerToProjectsForm() {
 }
 
 function fillEditTaskForm(indexOfTask, title, description, priority, date) {
-  const taskIdSpan = editTaskLabel.querySelector('span');
   const editTaskForm = document.querySelector('#task-form');
+  const taskIdSpan = editTaskForm.querySelector('span');
   const titleInput = editTaskForm.querySelector('#list-title');
   const descriptionInput = editTaskForm.querySelector('#list-description');
   const dateInput = editTaskForm.querySelector('#list-date');

@@ -96,7 +96,7 @@ git clone https://github.com/adamclasic/Todo-list.git
 - $ `git clone git@github.com:adamclasic/Todo-list`
 - `cd` into the project directory
 - Run `npm install` to install the necessary modules
-- Run `npm start` to automatically load the page on localhost:8080
+- Run `npm run build` to automatically load the page on localhost:8080
 
 
 <!-- ROADMAP -->
