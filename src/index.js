@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies
-, import/no-named-default, no-use-before-define */
-import { default as projectFact } from './scripts/project';
-import { default as taskFact } from './scripts/tasks';
+, no-use-before-define */
+import projectFact from './scripts/project';
+import taskFact from './scripts/tasks';
 
 import 'bootstrap';
 import './styles/style.scss';
@@ -9,7 +9,6 @@ import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 
-// let projectId = 0;
 
 
 // project area

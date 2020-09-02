@@ -1,4 +1,4 @@
-import { default as taskFact } from './tasks';
+import taskFact  from './tasks';
 
 export default function projectFact(arr = null) {
   let projectsArr = [taskFact('simple')];
