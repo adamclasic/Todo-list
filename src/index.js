@@ -68,7 +68,7 @@ function taskItemCreator(index, name, completed) {
     <input class="form-check-input ml-1" type="checkbox" data="${index}" value="" id="task${index}">
     <label class="form-check-label ml-4" for="task${index}">
     ${name}
-    <button data-toggle="modal" data-target="#editTask" class='btn expand-btn btn-link p-0 d-inline'><i class="fas fa-pen"></i></button>
+    <button data-toggle="modal" data-target="#editTask" class='btn expand-btn btn-link p-0 d-none'><i class="fas fa-pen"></i></button>
     </label>
     `;
   } else {
@@ -76,7 +76,7 @@ function taskItemCreator(index, name, completed) {
     <input class="form-check-input ml-1" checked type="checkbox" data="${index}" value="" id="task${index}">
     <label class="form-check-label done ml-4" for="task${index}">
     ${name}
-    <button data-toggle="modal" data-target="#editTask" class='btn expand-btn btn-link p-0 d-inline'><i class="fas fa-pen"></i></button>
+    <button data-toggle="modal" data-target="#editTask" class='btn expand-btn btn-link p-0 d-none'><i class="fas fa-pen"></i></button>
     </label>
     <button class='btn btn-link trash p-0 d-inline'><i class="far fa-trash-alt "></i></button>
     `;
@@ -104,8 +104,21 @@ function taskItemCreator(index, name, completed) {
     );
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
   });
+  liElemt.addEventListener('mouseenter', () => {
+    console.log('mose entered');
+    let editBtn = liElemt.querySelector("[data-toggle='modal']");
+    console.log(liElemt.querySelector("[data-toggle='modal']"));
+    editBtn.classList.add('d-inline')
+    editBtn.classList.remove('d-none')
+  })
+
+  liElemt.addEventListener('mouseleave', () => {
+    let editBtn = liElemt.querySelector("[data-toggle='modal']");
+    // console.log(liElemt.querySelector("[data-toggle='modal']"));
+    editBtn.classList.add('d-none')
+    editBtn.classList.remove('d-inline')
+  })
   liElemt.querySelector('.expand-btn').addEventListener('click', function expandBtn() {
-    // console.log(this.parentElement.previousElementSibling.getAttribute('data')-1);
     let indexOfTask = parseInt(this.parentElement.previousElementSibling.getAttribute('data')-1, 10);
     let name = mainProjects.projectsArr[projectId].tasksArr[indexOfTask].name;
     let description = mainProjects.projectsArr[projectId].tasksArr[indexOfTask].description;
