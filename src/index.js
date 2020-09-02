@@ -10,7 +10,6 @@ import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 
 
-
 // project area
 let mainProjects = projectFact();
 
@@ -31,33 +30,34 @@ let projectId = 0;
 
 function addEventListenerToEditTaskForm(index) {
   // dom Data
-  
-  
-  
-  let editBtn = document.querySelector('#taskSaveBtn');
-  editBtn.addEventListener('click', (e) => {
 
-  let editTaskForm = document.querySelector('#task-form');
-  let titleInput = editTaskForm.querySelector('#list-title');
-  let descriptionInput = editTaskForm.querySelector('#list-description');
-  let dateInput = editTaskForm.querySelector('#list-date');
-  let priorityInput = editTaskForm.querySelector('input[name="priority"]:checked');
-  let nameValue = titleInput.value;
 
-  console.log(nameValue);
-  let descriptionValue = descriptionInput.value;
-  let priorityValue = priorityInput.value;
-  let dateValue = dateInput.value;
+  const editBtn = document.querySelector('#taskSaveBtn');
+  editBtn.addEventListener('click', () => {
+    const editTaskForm = document.querySelector('#task-form');
+    const titleInput = editTaskForm.querySelector('#list-title');
+    const descriptionInput = editTaskForm.querySelector('#list-description');
+    const dateInput = editTaskForm.querySelector('#list-date');
+    const priorityInput = editTaskForm.querySelector('input[name="priority"]:checked');
+    const nameValue = titleInput.value;
 
-    console.log('this is fomr save modal btn');
-    console.log(index, nameValue, descriptionValue, dateValue, priorityValue);
-    console.log('--------------');
+    const descriptionValue = descriptionInput.value;
+    const priorityValue = priorityInput.value;
+    const dateValue = dateInput.value;
 
-    mainProjects.projectsArr[projectId].editTask(index, nameValue, descriptionValue, dateValue, priorityValue);
-    renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr[projectId].taskName)
-  })
+    mainProjects.projectsArr[projectId].editTask(
+      index,
+      nameValue,
+      descriptionValue,
+      dateValue,
+      priorityValue,
+    );
+    renderTask(
+      mainProjects.projectsArr[projectId].tasksArr,
+      mainProjects.projectsArr[projectId].taskName,
+    );
+  });
 }
-
 
 
 function taskItemCreator(index, name, completed) {
@@ -105,31 +105,23 @@ function taskItemCreator(index, name, completed) {
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
   });
   liElemt.addEventListener('mouseenter', () => {
-    console.log('mose entered');
-    let editBtn = liElemt.querySelector("[data-toggle='modal']");
-    console.log(liElemt.querySelector("[data-toggle='modal']"));
-    editBtn.classList.add('d-inline')
-    editBtn.classList.remove('d-none')
-  })
+    const editBtn = liElemt.querySelector("[data-toggle='modal']");
+    editBtn.classList.add('d-inline');
+    editBtn.classList.remove('d-none');
+  });
 
   liElemt.addEventListener('mouseleave', () => {
-    let editBtn = liElemt.querySelector("[data-toggle='modal']");
-    // console.log(liElemt.querySelector("[data-toggle='modal']"));
-    editBtn.classList.add('d-none')
-    editBtn.classList.remove('d-inline')
-  })
+    const editBtn = liElemt.querySelector("[data-toggle='modal']");
+    editBtn.classList.add('d-none');
+    editBtn.classList.remove('d-inline');
+  });
   liElemt.querySelector('.expand-btn').addEventListener('click', function expandBtn() {
-    let indexOfTask = parseInt(this.parentElement.previousElementSibling.getAttribute('data')-1, 10);
-    let name = mainProjects.projectsArr[projectId].tasksArr[indexOfTask].name;
-    let description = mainProjects.projectsArr[projectId].tasksArr[indexOfTask].description;
+    const indexOfTask = parseInt(this.parentElement.previousElementSibling.getAttribute('data') - 1, 10);
+    const { name } = mainProjects.projectsArr[projectId].tasksArr[indexOfTask];
+    const { description } = mainProjects.projectsArr[projectId].tasksArr[indexOfTask];
     // let priority = mainProjects.projectsArr[projectId].tasksArr[indexOfTask].priority;
-    let date = mainProjects.projectsArr[projectId].tasksArr[indexOfTask].date;
+    const { date } = mainProjects.projectsArr[projectId].tasksArr[indexOfTask];
 
-
-
-    console.log('this is fomr edit btn');
-    console.log(indexOfTask, name, description, date);
-    console.log('--------------');
     fillEditTaskForm(name, description, 'low', date);
     addEventListenerToEditTaskForm(indexOfTask);
   });
@@ -232,10 +224,10 @@ function addEventListenerToProjectsForm() {
 
 
 function fillEditTaskForm(title, description, priority, date) {
-  let editTaskForm = document.querySelector('#task-form');
-  let titleInput = editTaskForm.querySelector('#list-title');
-  let descriptionInput = editTaskForm.querySelector('#list-description');
-  let dateInput = editTaskForm.querySelector('#list-date');
+  const editTaskForm = document.querySelector('#task-form');
+  const titleInput = editTaskForm.querySelector('#list-title');
+  const descriptionInput = editTaskForm.querySelector('#list-description');
+  const dateInput = editTaskForm.querySelector('#list-date');
   titleInput.value = title;
   descriptionInput.value = description;
   dateInput.value = date;
