@@ -10,7 +10,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/adamclasic/Todo-list">
-    <img src="src/images/todo-icon.jpg" alt="Logo" width="100" height="200">
+    <img src="src/images/todo-icon.jpg" alt="Logo" width="200" height="100">
   </a>
 
   <h3 align="center">Todo List</h3>
