@@ -29,6 +29,37 @@ if (localStorage.getItem('project')) {
 let projectId = 0;
 
 
+function addEventListenerToEditTaskForm(index) {
+  // dom Data
+  
+  
+  
+  let editBtn = document.querySelector('#taskSaveBtn');
+  editBtn.addEventListener('click', (e) => {
+
+  let editTaskForm = document.querySelector('#task-form');
+  let titleInput = editTaskForm.querySelector('#list-title');
+  let descriptionInput = editTaskForm.querySelector('#list-description');
+  let dateInput = editTaskForm.querySelector('#list-date');
+  let priorityInput = editTaskForm.querySelector('input[name="priority"]:checked');
+  let nameValue = titleInput.value;
+
+  console.log(nameValue);
+  let descriptionValue = descriptionInput.value;
+  let priorityValue = priorityInput.value;
+  let dateValue = dateInput.value;
+
+    console.log('this is fomr save modal btn');
+    console.log(index, nameValue, descriptionValue, dateValue, priorityValue);
+    console.log('--------------');
+
+    mainProjects.projectsArr[projectId].editTask(index, nameValue, descriptionValue, dateValue, priorityValue);
+    renderTask(mainProjects.projectsArr[projectId].tasksArr, mainProjects.projectsArr[projectId].taskName)
+  })
+}
+
+
+
 function taskItemCreator(index, name, completed) {
   const liElemt = document.createElement('li');
   liElemt.className = 'task-item my-2 d-flex justify-content-between';
@@ -73,11 +104,26 @@ function taskItemCreator(index, name, completed) {
     );
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
   });
-  // liElemt.querySelector('.expand-btn').addEventListener('click', function expandBtn() {
-  //   console.log('hi');
-  // });
+  liElemt.querySelector('.expand-btn').addEventListener('click', function expandBtn() {
+    // console.log(this.parentElement.previousElementSibling.getAttribute('data')-1);
+    let indexOfTask = parseInt(this.parentElement.previousElementSibling.getAttribute('data')-1, 10);
+    let name = mainProjects.projectsArr[projectId].tasksArr[indexOfTask].name;
+    let description = mainProjects.projectsArr[projectId].tasksArr[indexOfTask].description;
+    // let priority = mainProjects.projectsArr[projectId].tasksArr[indexOfTask].priority;
+    let date = mainProjects.projectsArr[projectId].tasksArr[indexOfTask].date;
+
+
+
+    console.log('this is fomr edit btn');
+    console.log(indexOfTask, name, description, date);
+    console.log('--------------');
+    fillEditTaskForm(name, description, 'low', date);
+    addEventListenerToEditTaskForm(indexOfTask);
+  });
   return liElemt;
 }
+
+// testing 321
 
 function renderTask(arr, taskName) {
   const tasksParent = document.querySelector('.task-items-cont');
@@ -91,7 +137,6 @@ function renderTask(arr, taskName) {
   document.querySelector('#projectName').innerText = taskName.charAt(0).toUpperCase() + taskName.slice(1);
   return arr.length;
 }
-
 
 function createProjectElement(project, index) {
   const projectLi = document.createElement('li');
@@ -172,24 +217,27 @@ function addEventListenerToProjectsForm() {
 
 // testing 123
 
-let editTaskForm = document.querySelector('#task-form');
-let titleInput = editTaskForm.querySelector('#list-title');
-let descriptionInput = editTaskForm.querySelector('#list-description');
-let dateInput = editTaskForm.querySelector('#list-date');
+
 function fillEditTaskForm(title, description, date) {
+  let editTaskForm = document.querySelector('#task-form');
+  let titleInput = editTaskForm.querySelector('#list-title');
+  let descriptionInput = editTaskForm.querySelector('#list-description');
+  let dateInput = editTaskForm.querySelector('#list-date');
+  // console.log(descriptionInput);
+  // console.log(dateInput)
   titleInput.value = title;
   descriptionInput.value = description;
   dateInput.value = date;
 }
 
-function scrapEditTaskForm(index) {
-  mainProjects.projectsArr[projectId].editTask(
-  index,
-  titleInput.value,
-  descriptionInput.value,
-  dateInput.value,
-  )
-}
+// function scrapEditTaskForm(index) {
+//   mainProjects.projectsArr[projectId].editTask(
+//   index,
+//   titleInput.value,
+//   descriptionInput.value,
+//   dateInput.value,
+//   )
+// }
 
 // testing 123
 

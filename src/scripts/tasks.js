@@ -9,7 +9,7 @@ export default function taskFact(projectName, restoredArr = null) {
     const newTask = {
       name,
       description: null,
-      priority: 'low',
+      priority: 1,
       date: null,
       completed: false,
     };
@@ -24,7 +24,7 @@ export default function taskFact(projectName, restoredArr = null) {
       date: date || null,
       completed: false,
     };
-    taskName[index] = editedTask;
+    tasksArr[index] = editedTask;
   };
 
   const removeTask = function removeTask(index) {
