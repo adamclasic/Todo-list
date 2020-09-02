@@ -66,7 +66,7 @@ function taskItemCreator(index, name, completed) {
   if (!completed) {
     liElemt.innerHTML = `
     <input class="form-check-input ml-1" type="checkbox" data="${index}" value="" id="task${index}">
-    <label class="form-check-label ml-4" for="task${index}">
+    <label class="form-check-label ml-4 position-relative" for="task${index}">
     ${name}
     <button data-toggle="modal" data-target="#editTask" class='btn expand-btn btn-link p-0 d-none'><i class="fas fa-pen"></i></button>
     </label>
@@ -74,7 +74,7 @@ function taskItemCreator(index, name, completed) {
   } else {
     liElemt.innerHTML = `
     <input class="form-check-input ml-1" checked type="checkbox" data="${index}" value="" id="task${index}">
-    <label class="form-check-label done ml-4" for="task${index}">
+    <label class="form-check-label done ml-4 position-relative" for="task${index}">
     ${name}
     <button data-toggle="modal" data-target="#editTask" class='btn expand-btn btn-link p-0 d-none'><i class="fas fa-pen"></i></button>
     </label>

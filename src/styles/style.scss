@@ -130,6 +130,11 @@ ul {
   line-height: 1rem !important;
 }
 
+.card-content button[data-toggle='modal'] {
+  position: absolute;
+  left: -40px;
+}
+
 @media (max-width: 576px) {
   aside {
     font-size: 80%;
