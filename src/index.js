@@ -28,12 +28,14 @@ if (localStorage.getItem('project')) {
 let projectId = 0;
 
 
-function addEventListenerToEditTaskForm(index) {
+function addEventListenerToEditTaskForm() {
   // dom Data
 
 
   const editBtn = document.querySelector('#taskSaveBtn');
+  const editTaskLabel = document.querySelector('#editTaskLabel');
   editBtn.addEventListener('click', () => {
+    const taskId = editTaskLabel.querySelector('span').innerText;
     const editTaskForm = document.querySelector('#task-form');
     const titleInput = editTaskForm.querySelector('#list-title');
     const descriptionInput = editTaskForm.querySelector('#list-description');
@@ -46,7 +48,7 @@ function addEventListenerToEditTaskForm(index) {
     const dateValue = dateInput.value;
 
     mainProjects.projectsArr[projectId].editTask(
-      index,
+      taskId,
       nameValue,
       descriptionValue,
       dateValue,
@@ -122,15 +124,17 @@ function taskItemCreator(index, name, completed) {
     // let priority = mainProjects.projectsArr[projectId].tasksArr[indexOfTask].priority;
     const { date } = mainProjects.projectsArr[projectId].tasksArr[indexOfTask];
 
-    fillEditTaskForm(name, description, 'low', date);
-    addEventListenerToEditTaskForm(indexOfTask);
+    fillEditTaskForm(indexOfTask, name, description, 'low', date);
+    // console.log(indexOfTask);
   });
   return liElemt;
 }
+addEventListenerToEditTaskForm();
 
 // testing 321
 
 function renderTask(arr, taskName) {
+  console.log(arr);
   const tasksParent = document.querySelector('.task-items-cont');
   tasksParent.innerHTML = '';
   let indexCounter = 0;
@@ -167,8 +171,8 @@ function createProjectElement(project, index) {
     if (mainProjects.projectsArr[0]) {
       renderProjects(mainProjects.projectsArr);
       renderTask(
-        mainProjects.projectsArr[projectId].tasksArr,
-        mainProjects.projectsArr[projectId].taskName,
+        mainProjects.projectsArr[0].tasksArr,
+        mainProjects.projectsArr[0].taskName,
       );
     }
     localStorage.setItem('project', JSON.stringify(mainProjects.projectsArr));
@@ -223,8 +227,11 @@ function addEventListenerToProjectsForm() {
 // testing 123
 
 
-function fillEditTaskForm(title, description, priority, date) {
+function fillEditTaskForm(indexOfTask, title, description, priority, date) {
+  const editBtn = document.querySelector('#taskSaveBtn');
+  const taskIdSpan = editTaskLabel.querySelector('span').innerText = indexOfTask;
   const editTaskForm = document.querySelector('#task-form');
+
   const titleInput = editTaskForm.querySelector('#list-title');
   const descriptionInput = editTaskForm.querySelector('#list-description');
   const dateInput = editTaskForm.querySelector('#list-date');
