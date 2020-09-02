@@ -218,13 +218,11 @@ function addEventListenerToProjectsForm() {
 // testing 123
 
 
-function fillEditTaskForm(title, description, date) {
+function fillEditTaskForm(title, description, priority, date) {
   let editTaskForm = document.querySelector('#task-form');
   let titleInput = editTaskForm.querySelector('#list-title');
   let descriptionInput = editTaskForm.querySelector('#list-description');
   let dateInput = editTaskForm.querySelector('#list-date');
-  // console.log(descriptionInput);
-  // console.log(dateInput)
   titleInput.value = title;
   descriptionInput.value = description;
   dateInput.value = date;
