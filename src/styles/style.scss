@@ -1,0 +1,159 @@
+@import 'bootstrap';
+
+$secondary-2: #afafaf;
+
+//Overwrite Bootstrap
+
+.shadow-up {
+  box-shadow: 0 -4px 10px 0 rgb(175, 175, 175);
+}
+
+.rounded {
+  border-radius: 1rem !important;
+}
+
+.btn {
+  border-radius: 1.25rem;
+}
+
+main {
+  display: flex;
+}
+
+aside {
+  background-color: white;
+  width: 280px;
+  height: 100vh;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.projects-item {
+  font-weight: 500;
+}
+
+.projects-item span {
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  color: white;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.projects-item:hover {
+  background-color: $light;
+}
+
+.bg-grey {
+  background-color: $secondary-2;
+}
+
+// content
+
+.content {
+  flex: 1;
+  background-image: url('../images/bg-img.jpg');
+  background-repeat: repeat;
+  background-size: 500px 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-container {
+  margin: 1.5rem auto;
+  // height: 700px;
+  flex: 1;
+  width: 375px;
+  overflow: hidden;
+  flex-direction: column;
+  display: flex;
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-items-cont {
+  flex: 1;
+
+  svg {
+    cursor: pointer;
+  }
+}
+
+.animate-in {
+  position: relative;
+  animation: pop 0.2s ease-in-out forwards;
+  // background-color: green;
+}
+
+.animate-out {
+  position: relative;
+  animation: pop 0.2s ease-in-out reverse;
+  // background-color: green;
+}
+
+@keyframes pop {
+  from {
+    left: 400px;
+    opacity: 0;
+  }
+
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+.done {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.dones svg {
+  color: blue;
+  margin: 0 5px 0 -15px;
+}
+
+.task-submit {
+  border-radius: 1.25rem;
+}
+
+.trash,
+.expand-btn {
+  line-height: 1rem !important;
+}
+
+.card-content button[data-toggle='modal'] {
+  position: absolute;
+  left: -40px;
+}
+
+@media (max-width: 576px) {
+  aside {
+    font-size: 80%;
+    width: 85px;
+
+    & h5 {
+      font-size: 90%;
+    }
+
+    & .projects-item {
+      text-align: center;
+    }
+  }
+
+  .create-project-btn {
+    width: unset !important;
+  }
+
+  .card-container {
+    width: 80%;
+  }
+}
