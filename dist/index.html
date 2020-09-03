@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <link rel="stylesheet" href="./css/bootstrap-image-checkbox.min.css">
+  <link rel="shortcut icon" href="./32x32.jpg">
+</head>
+
+<body>
+  <main>
+    <div class="modal fade" id="editTask" tabindex="-1" role="dialog" aria-labelledby="editTaskLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editTaskLabel">Edit Task <span class=""></span></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- <div class="current-task-cont">
+
+            </div> -->
+            <form id="task-form">
+              <input type="text" class="form-control task-submit my-2" id="list-title" name="title" placeholder="title">
+              <input type="text" class="form-control task-submit my-2" id="list-description" name="description" placeholder="description">
+              <input type="date" class="form-control task-submit my-2" id="list-date" name="date" placeholder="due date">
+              <div class="priority-radio-button">
+                PRIORITY : 
+                <input type="radio" id="high" name="priority" class="radio-button text-danger" value="high">
+                <label for="high" class=" text-danger">High</label>
+                <input type="radio" id="medium" name="priority" class="radio-button text-warning" value="medium">
+                <label for="medium" class="radio-button text-warning">Medium</label>
+                <input type="radio" id="low" name="priority" checked class="radio-button " value="low">
+                <label for="low">Low</label>
+              </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" data-toggle="modal" data-target="#editTask" id="taskSaveBtn" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <aside class="border-right">
+      <div class="upper-section  p-4">
+        <button type="button" class="btn btn-primary create-project-btn w-100" data-toggle="modal" data-target=".bd-example-modal-md"><i class="fas fa-plus"></i> <span class="d-none d-sm-inline"> Create a project</button>
+        <div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-md">
+            <div class="modal-content overflow-hidden">
+              <div class="upper-modal p-4">
+                <h4>Create a Project</h4>
+                <form action="">
+                  <div class="label-container">
+                    <h6>Add labels to your project:</h6>
+                    <input type="checkbox" name="tech" id="label1">
+                    <label for="label1">Tech</label>
+                    <input type="checkbox" name="personal" id="label2">
+                    <label for="label2">Personal</label>
+                    <input type="checkbox" name="family" id="label3">
+                    <label for="label3">Life</label>
+                  </div>
+                  
+                  <h6>Select a backgournd image:</h6>
+                  <div class="background-image-input-cont d-flex flex-wrap">
+                    <div class="custom-control custom-radio image-checkbox m-2">
+                      <input type="radio" checked class="custom-control-input" id="ck1a" name="ck2">
+                      <label class="custom-control-label" for="ck1a">
+                        <img src="./d59edcc4deec47400518b7c85633dafb.jpg" width="160" height="160" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+                    
+                    <div class="custom-control custom-radio image-checkbox m-2">
+                      <input type="radio" class="custom-control-input" id="ck2a" name="ck2">
+                      <label class="custom-control-label" for="ck2a">
+                        <img src="https://source.unsplash.com/160x160/?tech" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+                    
+                    <div class="custom-control custom-radio image-checkbox m-2">
+                      <input type="radio" class="custom-control-input" id="ck3a" name="ck2">
+                      <label class="custom-control-label" for="ck3a">
+                        <img src="https://source.unsplash.com/160x160/?nature" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+
+                    <div class="custom-control custom-radio image-checkbox m-2">
+                      <input type="radio" class="custom-control-input" id="ck4a" name="ck2">
+                      <label class="custom-control-label" for="ck4a">
+                        <img src="https://source.unsplash.com/160x160/?fitness" alt="#" class="img-fluid">
+                      </label>
+                    </div>
+
+                  </div>
+                </form>
+              </div>
+              <div class="bottom-modal">
+                <form action="" id="addProjectId" class="d-flex p-2 shadow-up">
+                  <input type="text" placeholder="Click to quickly add a project" maxlength="1000" class="form-control task-submit" id="FormControlInput1" >
+                  <button type="submit"  data-toggle="modal" data-target=".bd-example-modal-md" class="btn btn-outline-primary ml-2 "> <i class="fas fa-arrow-right"></i> </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="aside-header-cont px-4 py-1 bg-light text-primary">
+        <h5>Projects</h5>
+      </div>
+      <div class="aside-header-cont px-4 py-1">
+        <h5></h5>
+      </div>
+      <div class="projects-cont ">
+        <ul class="projects-list">
+        </ul>
+      </div>
+    </aside>
+    <div class="content">
+      <div class="card-container bg-white rounded">
+        <div class="card-content  p-4">
+          <div>
+            <h5 id="projectName" class="mb-4">Project name</h5>
+          </div>
+          <ul class="task-items-cont" >
+            <li class="task-item my-2">
+              <input class="form-check-input ml-1" type="checkbox" value="" id="task1">
+              <label class="form-check-label ml-4" for="task1">
+                Task1
+              </label>
+            </li>
+            <li class="task-item  my-2">
+              <input class="form-check-input ml-1" type="checkbox" checked value="" id="task2">
+              <label class="form-check-label ml-4 done" for="task2">
+                Task2
+              </label>
+              <i class="far fa-trash-alt float-right trash"></i>
+            </li>
+          </ul>
+        </div>
+        <form action="" id="addTaskId" class="d-flex p-2 shadow-up">
+          <input type="text" placeholder="Click to quickly add a task" maxlength="1000" class="form-control task-submit" id="exampleFormControlInput1" placeholder="name@example.com">
+          <button type="submit" class="btn btn-outline-primary ml-2 "> <i class="fas fa-arrow-up"></i> </button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <script src="main.js"></script>
+</body>
+
+</html>
